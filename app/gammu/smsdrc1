@@ -2,7 +2,7 @@
 # isikan no port di bawah ini
 port = com36:
 # isikan jenis connection di bawah ini
-connection = at115200
+connection = at9600
 
 [smsd]
 service = mysql
@@ -13,6 +13,7 @@ phoneid = phone1
 commtimeout = 30
 sendtimeout = 30
 PIN = 1234
+CheckSecurity = 0
 
 # -----------------------------
 # Konfigurasi koneksi ke MySQL

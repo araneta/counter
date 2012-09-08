@@ -140,9 +140,10 @@ $('#uninstall').click(function(){
 	<aside id="sidebar" class="column">
         	<h3>SMS</h3>
 		<ul class="toggle">
-			<li class="icn_add_user"><a href="?page=send">Compose</a></li>
+			
 			<li class="icn_view_users"><a href="index.php">Inbox</a></li>
 			<li class="icn_profile"><a href="?page=template">Template</a></li>
+            <li class="icn_add_user"><a href="?page=send">Outbox</a></li>
 		</ul>
 		<h3>Setting</h3>
 		<ul class="toggle">

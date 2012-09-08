@@ -18,12 +18,28 @@ $template= template_muat_data($code,$key,NULL, NULL,null, $pages, $dataPerPage =
 require_once 'lib/functions.php';
 $tujuan=$_POST['tujuan'];
 $format=$_POST['format'];
+$nama=$_POST['nama'];
  if(isset($_POST['id'])&& $_POST['id']!=''){
-        _update("update template set tujuan='$tujuan',format='$format' where id='$_POST[id]'");
+        _update("update template set nama='$nama',tujuan='$tujuan',format='$format' where id='$_POST[id]'");
     }else{
-         _insert("insert into template (id,tujuan,format) values ('','$tujuan','$format')");
+         _insert("insert into template (id,nama,tujuan,format) values ('','$nama','$tujuan','$format')");
 		  $id = _last_id();
     }
+ 
+@header('location:'.  $_SERVER['PHP_SELF']."?page=template");
+}
+if($action=='kirim'){
+require_once 'lib/functions.php';
+$tujuan=$_POST['tujuan'];
+$format=$_POST['format'];
+$hp=$_POST['hp'];
+$pengganti=":hp";
+$pesan=str_replace($pengganti, $hp, $format);
+
+
+         _insert("INSERT INTO outbox (DestinationNumber, TextDecoded, CreatorID) VALUES ('$tujuan', '$pesan', 'Myphone1')");
+		 
+ 
  
 @header('location:'.  $_SERVER['PHP_SELF']."?page=template");
 }
@@ -33,7 +49,8 @@ if($action=='add'){
 			<header><h3>Tambah Template</h3></header>
 			 <form action="<?php $_SERVER['PHP_SELF']; ?>?page=template&action=simpan" method="post" enctype="multipart/form-data">
 <fieldset>
-
+                             <label>Nama:</label>
+							<input type="text" size="13" maxlength="13" id="nama" name="nama">
                             <label>Tujuan:</label>
 							<input type="text" size="13" maxlength="13" id="tujuan" name="tujuan">
 							<label>Format:</label>
@@ -65,6 +82,8 @@ foreach ($template['list'] as $key => $rowz):
 			<header><h3>Edit Template</h3></header>
 			 <form action="<?php $_SERVER['PHP_SELF']; ?>?page=template&action=simpan" method="post" enctype="multipart/form-data">
 <fieldset>
+                            <label>Nama:</label>
+							<input type="text" id="nama" name="nama" value="<?=$rowz['nama']?>" readonly="readonly">
 
                             <label>Tujuan:</label>
 							<input type="text" size="13" maxlength="13" id="tujuan" name="tujuan" value="<?=$rowz['tujuan']?>">
@@ -88,6 +107,51 @@ foreach ($template['list'] as $key => $rowz):
 <?
 endforeach;
 }
+if($action=='send'){
+foreach ($template['list'] as $key => $rowz):
+$pengganti=":hp";
+$diganti="<input type='text' id='hp' name='hp'>";
+?>
+
+			<header><h3>Kirim Pesan</h3></header>
+			 <form action="<?php $_SERVER['PHP_SELF']; ?>?page=template&action=kirim" method="post" enctype="multipart/form-data">
+<table width="100%">
+ <tr>
+    <td>Nama</td>
+    <td><input type="text"  id="nama" name="nama" value="<?=$rowz['nama']?>" readonly="readonly"></td>
+  </tr>
+  <tr>
+    <td>Tujuan</td>
+    <td><input type="text" size="13" maxlength="13" id="tujuan" name="tujuan" value="<?=$rowz['tujuan']?>" readonly="readonly"></td>
+  </tr>
+  <tr>
+    <td>Pesan:</td>
+    <td>	<input type="hidden"  id="format" name="format" value="<?=$rowz['format']?>" readonly="readonly"><?= str_replace($pengganti, $diganti, $rowz['format']);?></td>
+  </tr>
+</table>
+
+
+
+                         
+							
+						
+                            
+                            <input type="hidden" id="id" name="id" value="<?=$rowz['id']?>">
+                           
+
+						
+		                  
+			<footer>
+				<div class="submit_link">
+<input type="submit" value="Kirim" class="alt_btn">
+					<input type="submit" value="Reset">
+				</div>
+			</footer>
+</form>
+    <br/><br/>
+<?
+endforeach;
+}
 ?>
 
 <table class="tablesorter" cellspacing="0" id="tabel"> 
@@ -95,6 +159,7 @@ endforeach;
 				<tr> 
    				
     				<th>Id</th> 
+                    <th>Nama</th> 
                     <th>Tujuan</th> 
     				<th>Format</th> 
     				<th>Actions</th> 
@@ -107,11 +172,14 @@ endforeach;
 
 foreach ($template['list'] as $key => $row){?>
 				<tr><td><?=$row['id']?></td> 
+                     <td><?=$row['nama']?></td> 
                     <td><?=$row['tujuan']?></td> 
     				<td><?=$row['format']?></td> 
     				<td>
+                     <a href="?page=template&action=send&id=<?=$row['id']?>"><input type="image" src="images/icn_jump_back.png" title="Send"></a>
                     <a href="?page=template&action=edit&id=<?=$row['id']?>"><input type="image" src="images/icn_edit.png" title="Edit" ></a>
-                      <a href="?page=template&action=delete&id=<?=$row['id']?>"><input type="image" src="images/icn_trash.png" title="Trash"></a></td> 
+                      <a href="?page=template&action=delete&id=<?=$row['id']?>"><input type="image" src="images/icn_trash.png" title="Trash"></a>
+                       </td> 
 				</tr> 
 <?
 }

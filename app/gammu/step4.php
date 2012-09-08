@@ -169,6 +169,7 @@ phoneid = ".$id1."
 commtimeout = 30
 sendtimeout = 30
 PIN = 1234
+CheckSecurity = 0
 
 # -----------------------------
 # Konfigurasi koneksi ke MySQL

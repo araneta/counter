@@ -21,7 +21,14 @@ switch (@$_GET['page']){
 
 							include "app/template.php"; 
 
-							break;		
+							break;
+	   case 'send' 	: if(!file_exists ("app/send.php")) 
+
+						 	die ("file not found"); 
+
+							include "app/send.php"; 
+
+							break;				
 	   case 'koneksigammu': if(!file_exists ("app/gammu/step2.php")) 
 
 						 	die ("file not found"); 

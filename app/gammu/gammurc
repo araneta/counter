@@ -1,6 +1,6 @@
 [gammu]
 port = com36:
-connection = at115200
+connection = at9600
 [gammu1]
 port = :
 connection = 
