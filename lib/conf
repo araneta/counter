@@ -1,0 +1,5 @@
+user = root;
+# isikan password user untuk akses ke MySQL
+password = ;
+# isikan nama database untuk Gammu
+database = counter;
