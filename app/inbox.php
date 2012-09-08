@@ -7,7 +7,7 @@ $inbox = inbox_muat_data($code,$key,NULL, NULL,null, $page, $dataPerPage = 6);
 ?>
 <header><h3>Inbox</h3></header>
 
-            	<table class="tablesorter" cellspacing="0"> 
+            	<table class="tablesorter" cellspacing="0" id="sms"> 
 			<thead> 
 				<tr> 
    				
@@ -18,7 +18,9 @@ $inbox = inbox_muat_data($code,$key,NULL, NULL,null, $page, $dataPerPage = 6);
 				</tr> 
 			</thead> 
 			<tbody> 
-              <? foreach ($inbox['list'] as $key => $row){?>
+        
+			    <? if($inbox['total']!='0'){
+			  foreach ($inbox['list'] as $key => $row){?>
 				<tr><td><?=deletetime($row['ReceivingDateTime'])?></td> 
     				<td><?=$row['SenderNumber']?></td> 
     				<td><?
@@ -28,8 +30,18 @@ $inbox = inbox_muat_data($code,$key,NULL, NULL,null, $page, $dataPerPage = 6);
     				<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
 				</tr> 
 			<? } ?>
-			</tbody> 
-			</table>
+		
           
-      <?=$inbox['paging'];?>
+       <?
+	  }
+	  else{
+	  ?>
+      <tr><td colspan="4"><div align="center">Data Masih Kosong</div></td></tr>
+	  <?
+	  }
+	  ?>
+      	</tbody> 
+			</table>
+      <?
+	  $inbox['paging'];?>
 

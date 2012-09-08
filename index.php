@@ -69,9 +69,21 @@ $('#uninstall').click(function(){
                     $('#hasil').html(msg);
 					}
 				});	
-				});					
-	
+				});	
+												
 	});		
+	<? if  (isset($_GET['page'])){?>
+	$(document).ready (function () {
+    var updater = setTimeout(function () {
+        $('#tabel').load ('<?=$_SERVER['PHP_SELF']."?page=".$_GET['page']?> #tabel');
+    }, 10);
+});
+<? } ?>
+	$(document).ready (function () {
+    var updaters = setInterval(function () {
+        $('#sms').load ('<?=$_SERVER['PHP_SELF']?> #sms');
+    }, 10000);
+});
 	$(document).ready(function() 
     	{ 
       	  $(".tablesorter").tablesorter(); 
@@ -111,7 +123,7 @@ $('#uninstall').click(function(){
 	<header id="header">
 		<hgroup>
 			<h1 class="site_title"><a href="index.html">Jogjaweb.in</a></h1>
-			<h2 class="section_title">Dashboard</h2><div class="btn_view_site"><a href="http://www.jogjaweb.in">View Site</a></div>
+			<h2 class="section_title">&nbsp;</h2><div class="btn_view_site"><a href="http://www.jogjaweb.in">View Site</a></div>
 	  </hgroup>
 	</header> <!-- end of header bar -->
 	
@@ -128,16 +140,15 @@ $('#uninstall').click(function(){
 	<aside id="sidebar" class="column">
         	<h3>SMS</h3>
 		<ul class="toggle">
-			<li class="icn_add_user"><a href="#">Add New User</a></li>
-			<li class="icn_view_users"><a href="#">View Users</a></li>
-			<li class="icn_profile"><a href="#">Your Profile</a></li>
+			<li class="icn_add_user"><a href="?page=send">Compose</a></li>
+			<li class="icn_view_users"><a href="index.php">Inbox</a></li>
+			<li class="icn_profile"><a href="?page=template">Template</a></li>
 		</ul>
 		<h3>Setting</h3>
 		<ul class="toggle">
 			<li class="icn_new_article"><a href="?page=setting">Gammu</a></li>
 			<li class="icn_edit_article"><a href="?page=db">Database</a></li>
-			<li class="icn_categories"><a href="#">Categories</a></li>
-			<li class="icn_tags"><a href="#">Tags</a></li>
+			<li class="icn_categories"><a href="?page=about">About</a></li>
 		</ul>
 	
         <!--
@@ -158,9 +169,11 @@ $('#uninstall').click(function(){
         
 		<footer>
 			<hr />
-			<p><strong>Copyright &copy; 2012 Jogjaweb.in</strong></p>
-			<p>Theme by <a href="http://www.medialoot.com">MediaLoot</a></p>
-		</footer>
+		    	<p><a href="http://www.kaskus.co.id/showthread.php?t=16143892"><img src="images/kakus.png" width="202" height="49"></a></p>
+			<p><a href="http://www.medialoot.com"><img src="images/logo.png" width="202" height="49"></a></p>
+            <P><a href="https://github.com/orankaneh/counter"><img src="images/github-logo.png" width="151" height="59"></a></P>
+            	<p><strong>Copyright &copy; 2012 Jogjaweb.in</strong></p>
+	  </footer>
         <hr />
 	</aside><!-- end of sidebar -->
 
@@ -170,7 +183,7 @@ $('#uninstall').click(function(){
 	
 		<article class="module width_full">
 			
-		<?	include_once "paging.php";?>
+		<?php include_once "paging.php";?>
         
 				</article>
                 </section>

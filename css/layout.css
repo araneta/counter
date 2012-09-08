@@ -354,7 +354,7 @@ text-decoration: underline;
 }
 
 #sidebar footer {
-margin-top: 100%;
+margin-top: 60%;
 }
 
 
@@ -891,3 +891,37 @@ margin: 10px 10px 10px 10px;
 .ok {background:url(../images/icons/alert.png) no-repeat left; color:#0000FF; padding-left:17px; padding-top:2px; height:17px; margin-left:0px}
 .page-next {background:url(../images/next.png) no-repeat; padding:4px 25px 6px 10px; cursor:pointer;font-size:10px;}
 .page-prev {background:url(../images/prev.png) no-repeat; padding:4px 14px 6px 25px; cursor:pointer;font-size:10px;}
+
+ul.tombol {
+	margin: -27px 10px 10px 100px;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 24px; /*--Set height of tabs--*/
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 0 #fff;
+	-moz-box-shadow: 0 1px 0 #fff;
+	box-shadow: 0 1px 0 #fff;
+	border: 1px solid #ccc;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #fff;
+}
+ul.tombol li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	line-height: 24px;
+}
+ul.tombol  li a {
+	text-decoration: none;
+	color: #999;
+	display: block;
+	padding: 0 10px;
+	height: 24px;
+}
+
+ul.tombol  li a:hover {
+	color: #44474F;
+}

@@ -760,16 +760,16 @@ function delete_list_data($id, $tabel, $link, $err_link, $dataname=null, $page=N
         $sql = mysql_query("DELETE FROM $tabel WHERE " . $property->name . " = '$id'");
         if ($sql) {
             if($add_param!=null){
-                header("location:" . app_base_url('' . $link . '') . "$pages"."$tabs"."&" . $add_param."");
+                header("location:" . $_SERVER['PHP_SELF'] . $link  . "$pages"."$tabs"."&" . $add_param."");
             }else{
-                header("location:" . app_base_url('' . $link . '') . "$pages"."$tabs");
+                header("location:" . $_SERVER['PHP_SELF'] . $link  . "$pages"."$tabs");
             }
             
         } else {
             if($add_param!=null){
-                header("location:" . app_base_url('' . $err_link . '') . "$pages"."$tabs"."&" . $add_param."");
+                header("location:" .  $_SERVER['PHP_SELF'] . $link  . "$pages"."$tabs"."&" . $add_param."");
             }else{
-                header("location:" . app_base_url('' . $err_link . '') . "$pages"."$tabs");
+                header("location:" .  $_SERVER['PHP_SELF'] . $link  . "$pages"."$tabs");
             }
             
         }
