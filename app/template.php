@@ -4,15 +4,17 @@ $code = isset($_GET['id'])?$_GET['id']:NULL;
 $key = isset($_GET['key'])?$_GET['key']:NULL;
 $pages = isset($_GET['pages'])?$_GET['pages']:NULL;
 $action = isset($_GET['action'])?$_GET['action']:NULL;
-$template= template_muat_data($code,$key,NULL, NULL,null, $pages, $dataPerPage = 10);
+$template= template_muat_data($code,$key,NULL, NULL,null, $pages, $dataPerPage = 5);
 ?>
 
  
 <header><h3>Template</h3>
+
 		<ul class="tombol">
    			<li><a href="?page=template&action=add">Tambah</a></li>
+</ul>
+        
 
-		</ul>
 </header>
 <? if($action=='simpan'){
 require_once 'lib/functions.php';
@@ -193,8 +195,11 @@ foreach ($template['list'] as $key => $row){?>
 	  ?>
 </tbody> 
 			</table>
+            <br/>
+             <div align="center">
       <?
 	  echo $template['paging'];?>
+      </div>
     
-
+<br/>
 

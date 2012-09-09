@@ -15,6 +15,13 @@ switch (@$_GET['page']){
 							include "app/database.php"; 
 
 							break;		
+	   case 'about' 	: if(!file_exists ("app/about.php")) 
+
+						 	die ("file not found"); 
+
+							include "app/about.php"; 
+
+							break;		
 	   case 'template' 	: if(!file_exists ("app/template.php")) 
 
 						 	die ("file not found"); 

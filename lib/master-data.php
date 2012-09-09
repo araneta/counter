@@ -55,7 +55,7 @@ function template_muat_data($id=null,$key=null,$category = NULL, $sort = NULL,$s
  $where = " where id = '$id'";
 }
 if($key != NULL){
-       $cari = "where format like ('%$key%') ";
+       $cari = "where nama like ('%$key%') ";
       } else
       $cari='';
 if (!empty($page)) {
@@ -83,6 +83,46 @@ if ($id != null) {
 		$result['list'] = _select_arr($sql);
 	}
 	$sql="select * from template 
+    $where $cari order by id ASC ";
+	   $result['paging'] = pagination($sql, $dataPerPage);
+    $result['offset'] = $offset;
+    $result['total'] = countrow($sql);
+	   return $result;
+}
+function outbox_muat_data($id=null,$key=null,$category = NULL, $sort = NULL,$sortBy=null, $page=NULL, $dataPerPage = NULL) {
+ $where=null;
+ if ($id != null) {
+ $where = " where id = '$id'";
+}
+if($key != NULL){
+       $cari = "where nama like ('%$key%') ";
+      } else
+      $cari='';
+if (!empty($page)) {
+        $noPage = $page;
+    } else {
+        $noPage = 1;
+    }
+	
+    if (isset($dataPerPage) && $dataPerPage != null) {
+        $offset = ($noPage - 1) * $dataPerPage;
+        $batas = "limit $offset, $dataPerPage";
+    } else {
+        $batas = '';
+        $offset = '';
+    }
+  $result = array();
+   $sql="select * from  sentitems $where 
+     $cari order by id ASC $batas";
+
+if ($id != null) {
+		$result =  _select_unique_result($sql);
+                $result['list'] = _select_arr($sql);
+                
+	} else {
+		$result['list'] = _select_arr($sql);
+	}
+	$sql="select * from  sentitems 
     $where $cari order by id ASC ";
 	   $result['paging'] = pagination($sql, $dataPerPage);
     $result['offset'] = $offset;

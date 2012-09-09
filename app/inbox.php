@@ -41,7 +41,10 @@ $inbox = inbox_muat_data($code,$key,NULL, NULL,null, $page, $dataPerPage = 6);
 	  }
 	  ?>
       	</tbody> 
-			</table>
-      <?
+			</table><br/>
+                <div align="center">
+                        <?
 	  $inbox['paging'];?>
-
+                         <br/>
+                  
+                </div>

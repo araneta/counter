@@ -84,6 +84,7 @@ $('#uninstall').click(function(){
         $('#sms').load ('<?=$_SERVER['PHP_SELF']?> #sms');
     }, 10000);
 });
+
 	$(document).ready(function() 
     	{ 
       	  $(".tablesorter").tablesorter(); 
@@ -122,14 +123,14 @@ $('#uninstall').click(function(){
 
 	<header id="header">
 		<hgroup>
-			<h1 class="site_title"><a href="index.html">Jogjaweb.in</a></h1>
-			<h2 class="section_title">&nbsp;</h2><div class="btn_view_site"><a href="http://www.jogjaweb.in">View Site</a></div>
+			<h1 class="site_title"><a href="http://jogjaweb.in">Jogjaweb.in</a></h1>
+		  <h2 class="section_title">&nbsp;</h2><div class="btn_view_site"><a href="http://www.jogjaweb.in">View Site</a></div>
 	  </hgroup>
 	</header> <!-- end of header bar -->
 	
 	<section id="secondary_bar">
 		<div class="user">
-			<p>jogjaweb.in (<a href="#">3 Messages</a>)</p>
+			<p>Administrator</p>
 			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
 		</div>
 		<div class="breadcrumbs_container">
@@ -180,7 +181,7 @@ $('#uninstall').click(function(){
 
 	<section id="main" class="column">
 		
-		<h4 class="alert_info">Smsgateway Free By jogjaweb.in</h4>
+		<h4 class="alert_info">Free Smsgateway Pengisian Pulsa By jogjaweb.in</h4>
 	
 		<article class="module width_full">
 			
